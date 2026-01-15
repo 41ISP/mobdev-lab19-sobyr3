@@ -29,7 +29,19 @@ const Main = () => {
         notificationTime: "07:00"
     })
     const handleFormChange = (e) => {
-
+        const { name, value } = e.target
+        setForm((prev) => ({ ...prev, [name]: value }))
+    }
+    const handleFormSubmit = () => {
+        const newHabit = {
+            name: form.habitName,
+            notificationTime: form.notificationTime,
+            frequency: form.frequency,
+            streak: 0,
+            isToday: false,
+            color: "red"
+        }
+        setHabits((val) => [...val, newHabit])
     }
     return (
         <div className="container">
@@ -38,14 +50,18 @@ const Main = () => {
                 <p className="subtitle">Build better habits, one day at a time</p>
             </header>
 
-            <Stats habits={habits}/>
+            <Stats habits={habits} />
 
-            <HabitForm form={form} handleFormChange={handleFormChange} />
+            <HabitForm
+                form={form}
+                handleFormChange={handleFormChange}
+                handleFormSubmit={handleFormSubmit}
+            />
 
             <div className="habits-section">
                 <h2>📋 Today's Habits</h2>
 
-                {habits.map((el) => <HabitCard {...el}/>)}
+                {habits.map((el) => <HabitCard {...el} />)}
             </div>
         </div>
     )
