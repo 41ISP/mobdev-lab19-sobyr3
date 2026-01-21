@@ -8,7 +8,7 @@ export const isEqToday = (date) => {
 export const checkCompleted = (date, arr) => {
     const check = new Date(date).toDateString()
     return arr.some((el) => 
-    new date(el).toDateString() == check ) 
+    new Date(el).toDateString() == check ) 
    
 }
 export const daysSince = (date) => {
